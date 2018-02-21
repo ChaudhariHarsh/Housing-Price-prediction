@@ -1,7 +1,7 @@
 import numpy as np
 
 
-
+##---------------- Load Data------------------------
 Z = []
 file = open("data.txt", "r") 
 for line in file:
@@ -21,40 +21,48 @@ for i in range(j):
     X[i][2]=Z[i,1]
     x2[i] = Z[i,1]
     Y[i]=Z[i,2]
-##print X, X.shape
 X = np.matrix(X)
+
+
+##---------------- LinearRegression Function--------
 def LinearRegression(Response, Feature, **options):
-    alpha = 0.001
+    if options.get("alpha") != None:
+        alpha = options.get("alpha")
+    else:
+        alpha = 0.0000000001
+        
     Feature = np.matrix(Feature)
     Response = np.matrix(Response)
-    
-    (r, c) = Feature.shape
-    print r
-##    Feature = np.concatenate([np.ones(c),Feature])
-#    Feature = np.transpose(Feature)
-#    Feature = Feature.resize(r,c)
-    Thetas = np.zeros(c)
+    (row, column) = Feature.shape
+    Thetas = np.zeros(column)
     Thetas = np.matrix(Thetas)
     Thetas = np.transpose(Thetas)
-    J = np.zeros((r+1,c+1))
-##    print J
-    for i in range(10000):
+    J = np.zeros(( row + 1, column + 1))
+    ##------------ Training Phase------------------   
+    for iteration in range(1000000):
+
+        
+    ##------------ Hyponthsis function-------------
         hx = np.matmul(Feature,Thetas)
         hx = np.transpose(hx)
-        #print hx.shape, Response.shape
+        
+    ##------------ Cost Function-------------------
         J0 = (hx - Response)
         J0 = np.matrix(J0)
         J1 = J0.dot(x1)
         J1 = np.matrix(J1)
-        Jsum0 = int(np.sum(J0))
-        Jsum1 = int(np.sum(J1))
-        Thetas[0] = Thetas[0] - (Jsum0 * (alpha /96) )        
-        Thetas[1] = Thetas[1] - (Jsum1 * (al.pha /96) )
+        J2 = J0.dot(x2)
+        J2 = np.matrix(J2)
+        Jsum0 = int(np.sum(J0)) / (2*column)
+        Jsum1 = int(np.sum(J1)) / (2*column)
+        Jsum2 = int(np.sum(J2)) / (2*column)
+    ##------------ Theta Update--------------------
+        Thetas[0] = Thetas[0] - ( alpha * Jsum0 )        
+        Thetas[1] = Thetas[1] - ( alpha * Jsum1 )
+        Thetas[2] = Thetas[2] - ( alpha * Jsum2 )
         
-##A = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-##B = [3,6,9,12,15,18,21,24,27,30,33,36,39,42,45,48,51,54,57,60]
-##Thetas = LinearRegression(A,B)
-##print Thetas[0] + Thetas[1]*60
+    return Thetas
 
+##---------------- Function Call ----------------
 Thetas = LinearRegression(Y,X)
-
+print Thetas[0] + (Thetas[1]*X[0,1]) + (Thetas[2]*X[0,2]) , Y[1]
