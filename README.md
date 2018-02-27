@@ -7,21 +7,32 @@
 
  X = Features,
  Y = Resposes,
- θ = Learning Parameter,
+ W = weights - Learning Parameter,
+ b = bias - Learning Parameter
  α = Learning Rate,
  m = Training set size
  
  ## Hyponthsis function:
- > h(X) = θ(0) + θ(1) * X(1) + θ(2) * X(2) + θ(3) * X(3) ...
+ > h(X) = b + W(1) * X(1) + W(2) * X(2) + W(3) * X(3) ...
  
  ## Cost Functoin : 
- > J = ( h(X) - Y )**2
+ > Cost_Function = ( h(X) - Y )**2
  
  ## Gradient Decent :
  > grad J = (1/2) * (h(X) - Y)
+
+ ## Weight Update rule : 
+ >  b := b - (α / 2 * m) (**∑** (h(X) - Y) * X(i))
  
- ## Theta Update rule : 
- >  θ(i) := θ(i) - (α / 2 * m) (**∑** (h(X) - Y) * X(i))
+ ## Weight Update rule : 
+ >  W[i] := w[i] - (α / 2 * m) (**∑** (h(X) - Y) * X(i))
  
-  By implementing this function we make LinearRegression function and training to get optimal thetas.
+  By implementing this function we make LinearRegression function and training to get optimal Learning Parameters b and W.
  
+ # Visualization :  
+  I have implemented simple visualization with iteration = 1000 and learning_rate = 0.1
+  
+ 
+![Alt text](https://github.com/ChaudhariHarsh/ex1/blob/master/LinearRe.png?raw=true "Linear Regression Learning Visualization")
+
+this way we can train simple linear regression model.
