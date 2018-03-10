@@ -150,9 +150,3 @@ hf = hf.flatten()
 #print X,X.shape,hyponthsis_function.shape
 A = visualization(x, y, hf)
 ```
-## Let's make jupyter notebook : 
-```
-# Let's convert this notebook to a README for the GitHub project's title page:
-!jupyter nbconvert --to markdown HPpredict.ipynb
-!mv HPpredict.md README.md
-```
