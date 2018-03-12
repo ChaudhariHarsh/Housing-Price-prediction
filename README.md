@@ -125,6 +125,8 @@ from housingdata import *
   ```
   ## Final Linear Regression function :
   
+  This is final function that calls all other functions and derive all parameters.
+  
   ```
   def linear_regression(X, Y, itertions, learning_rate, method = "Linear"):
     (row, col) = X.shape
@@ -141,6 +143,8 @@ from housingdata import *
   
  ## Data Reading and Function Call : 
  
+ Function that Loads data from .csv file.
+ 
  ```
  X, Y, Xv, Yv = housingPrice()
  hyponthsis_function, error, W, b = linear_regression(X, Y, itertions=1000, learning_rate=0.5, method="Linear")
@@ -148,6 +152,8 @@ from housingdata import *
  ```
 
 ## Visualizing Trained model : 
+
+This is visualization part.
 
 ```
 x = Xv[1,:].T
@@ -162,3 +168,5 @@ hf = hf.flatten()
 #print X,X.shape,hyponthsis_function.shape
 A = visualization(x, y, hf)
 ```
+
+As we can see this is very good fit to data
