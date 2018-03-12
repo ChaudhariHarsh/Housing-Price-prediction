@@ -69,12 +69,22 @@ from housingdata import *
  
  ```
  
- ## Gradient Decent :
+ ## Gradient Descent :
+ 
+ To implement gradient descent, we will derive following parameters,
+ 
+ - Gradient of cost function J as grad J, I hope you alread know how to get partial derivative of any function, then we can see that gradient of cost is as follow,
+ 
  > grad J = (1/2) * (h(X) - Y)
+ 
+ - Updating bias b with learning rate α,
  
  >  b := b - (α / 2 * m) (**∑** (h(X) - Y) * X(i))
  
+ - Updating weight W with learning rate α,
+ 
  >  W[i] := w[i] - (α / 2 * m) (**∑** (h(X) - Y) * X(i))
+ 
  ```
  def gradient_descent(X, Y, W, b, itertions, learning_rate, method):
     (n,m) = X.shape
@@ -98,9 +108,10 @@ from housingdata import *
     assert(dW.shape == W.shape)
     return W,b
  ```
-  By implementing this function we make LinearRegression function and training to get optimal Learning Parameters b and W.
+ By implementing this function we make LinearRegression function and training to get optimal Learning Parameters b and W.
  
  ## Visualization Function :  
+ 
   I have implemented simple visualization function.
   ```
   def visualization(x, y, hf):
@@ -112,7 +123,8 @@ from housingdata import *
     return None
 
   ```
-  ## Final Linear Regression function : 
+  ## Final Linear Regression function :
+  
   ```
   def linear_regression(X, Y, itertions, learning_rate, method = "Linear"):
     (row, col) = X.shape
