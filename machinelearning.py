@@ -87,13 +87,13 @@ def visualization(x, y, hf):
 def linear_regression(X, Y, itertions, learning_rate, method = "Linear"):
     
     (row, col) = X.shape
-
+    ## Initialize W and b with zeros
     (W, b) = initialize_parameters(row,method)
-
+    ## Normailze Features with range [0,1]
     X = feature_normalization(X)
-
+    ## Training with gradient descent :
     (W,b) = gradient_descent(X, Y, W, b, itertions, learning_rate, method)
-
+    ## Calculating cost at end of training for finding out error
     hyponthsis_function, cost, error = cost_function(X, Y, W, b, method)
     
     return hyponthsis_function, error, W, b
@@ -102,13 +102,13 @@ def linear_regression(X, Y, itertions, learning_rate, method = "Linear"):
 def logistic_regression(X, Y, itertions, learning_rate, method):
     
     (row, col) = X.shape
-
+    ## Initialize W and b with zeros
     (W, b) = initialize_parameters(row,method)
-
+    ## Normailze Features with range [0,1]
     X = feature_normalization(X)
-
+    ## Training with gradient descent :
     (W,b) = gradient_descent(X, Y, W, b, itertions, learning_rate, method)
-
+    ## Calculating cost at end of training for finding out error
     hyponthsis_function, cost, error = cost_function(X, Y, W, b, method)
     
     return hyponthsis_function, error, W, b
@@ -148,11 +148,11 @@ X = np.matrix(X)
 Xv = np.matrix(Xv)
 
 ## Training Set :
-X = X.T ## Make this X with shape of (5,47)
-Y = Y.T ## Make this Y with shape of (1,47)
+X = X.T                                         ## Make this X with shape of (5,47)
+Y = Y.T                                         ## Make this Y with shape of (1,47)
 Xv = np.matrix(Xv)
-Xv = Xv.T ## Make this X with shape of (5,47)
-Yv = Yv.T ## Make this Y with shape of (1,47)
+Xv = Xv.T                                       ## Make this X with shape of (5,47)
+Yv = Yv.T                                       ## Make this Y with shape of (1,47)
 hyponthsis_function, error, W, b = linear_regression(X, Y, itertions=1000, learning_rate=0.5, method="Linear")
 ##h = hyponthsis_function.T
 print Y[0,5], hyponthsis_function[0,5]
