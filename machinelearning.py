@@ -1,10 +1,12 @@
-"""      """
+""" This is Houcing Predicting Code file. There are number of function define
+    for different specific purpose. Check Comment for understand code."""
 
 
 import numpy as np
 import matplotlib.pyplot as plt
 import math
 
+## Initialize Parameter W and b :
 def initialize_parameters(n_x,method):
     ##This function is for initialize All parameter
     
@@ -21,12 +23,12 @@ def initialize_parameters(n_x,method):
                       "b": b}
     else :
         print "Error : Define method in initialize parameter"
-        
-    
+            
     return W, b
 #parameters = initialize_parameters(5,method="Logistic")
 #print parameters
 
+## Feature normalize with range [0, 1] : 
 def feature_normalization(X):
     (row, col) = X.shape
     for f in range(1,row):
@@ -34,6 +36,7 @@ def feature_normalization(X):
     assert(X.shape==(row,col)),"Error in size match : feature_normalization"
     return X
 
+## Cost function :
 def cost_function(X, Y, W, b, method):
     ## where X shape is (input_size, no_examples)
     (n,m) = X.shape
@@ -51,6 +54,7 @@ def cost_function(X, Y, W, b, method):
 
     return hyponthsis_function, cost, error
 
+## Gradient descent iterations :
 def gradient_descent(X, Y, W, b, itertions, learning_rate, method):
     (n,m) = X.shape
     for iteration in range(itertions):
@@ -74,6 +78,7 @@ def gradient_descent(X, Y, W, b, itertions, learning_rate, method):
     assert(dW.shape == W.shape)
     return W,b
 
+## Function for visualization :
 def visualization(x, y, hf):
     fig, handle = plt.subplots()
     handle.plot(x, y, "yo", x, hf, "--k")
@@ -82,6 +87,7 @@ def visualization(x, y, hf):
     fig.show()
     return None
 
+## Linear regression function that call all above function as its need :
 def linear_regression(X, Y, itertions, learning_rate, method = "Linear"):
     
     (row, col) = X.shape
@@ -96,7 +102,7 @@ def linear_regression(X, Y, itertions, learning_rate, method = "Linear"):
     
     return hyponthsis_function, error, W, b
           
-
+## This is for logistic regression implementation :
 def logistic_regression(X, Y, itertions, learning_rate, method):
     
     (row, col) = X.shape
@@ -112,7 +118,7 @@ def logistic_regression(X, Y, itertions, learning_rate, method):
     return hyponthsis_function, error, W, b
 
 
-
+## Reading data from data.txt file
 Z = []
 file = open("data.txt", "r") 
 for line in file:
@@ -127,6 +133,8 @@ X = np.zeros((j,k+2),dtype=float)
 Y = np.zeros((j,1),dtype=float)
 Xv = np.zeros((j,k+2),dtype=float)
 Yv = np.zeros((j,1),dtype=float)
+
+## Making features for learning : 
 for i in range(j):
     X[i,0]= 1
     X[i,1]=Z[i,0]
