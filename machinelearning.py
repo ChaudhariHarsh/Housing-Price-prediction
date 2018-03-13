@@ -14,13 +14,9 @@ def initialize_parameters(n_x,method):
     if method == "Linear":
         W = np.zeros((1,n_x))
         b = 0
-        parameters = {"W": W,
-                      "b": b}
     elif method == "Logistic":
         W = np.zeros((1,n_x))
         b = 0
-        parameters = {"W": W,
-                      "b": b}
     else :
         print "Error : Define method in initialize parameter"
             
@@ -134,7 +130,7 @@ Y = np.zeros((j,1),dtype=float)
 Xv = np.zeros((j,k+2),dtype=float)
 Yv = np.zeros((j,1),dtype=float)
 
-## Making features for learning : 
+## Making feature vvector for learning : 
 for i in range(j):
     X[i,0]= 1
     X[i,1]=Z[i,0]
@@ -151,6 +147,7 @@ for i in range(j):
 X = np.matrix(X)
 Xv = np.matrix(Xv)
 
+## Training Set :
 X = X.T ## Make this X with shape of (5,47)
 Y = Y.T ## Make this Y with shape of (1,47)
 Xv = np.matrix(Xv)
@@ -160,7 +157,7 @@ hyponthsis_function, error, W, b = linear_regression(X, Y, itertions=1000, learn
 ##h = hyponthsis_function.T
 print Y[0,5], hyponthsis_function[0,5]
 
-
+## Visualization function call :
 x = Xv[1,:].T
 x = np.array(x)
 x = x.flatten()
