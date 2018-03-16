@@ -55,12 +55,12 @@ from housingdata import *
     (n,m) = X.shape
     if method == "Linear":
         hyponthsis_function = np.dot(W,X) + b
-        cost = np.square(hyponthsis_function - Y)
+        cost = np.square(hyponthsis_function - Y) + lambda * np.sum(W**2)
         error = np.sum(cost /(m),axis=1)
     elif method == "Logistic":
         Z = np.dot(W,X) + b
         hyponthsis_function = 1/(1+exp(-Z))
-        cost = - np.dot(Y,np.log(hyponthsis_function).T) - np.dot(1 - Y,np.log(1 - hyponthsis_function).T) 
+        cost = - np.dot(Y,np.log(hyponthsis_function).T) - np.dot(1 - Y,np.log(1 - hyponthsis_function).T) + lambda * np.sum(W**2)
         error = np.sum(cost /(m),axis=1)
     else:
         print "Error In Cost Function : No method Found"
@@ -79,18 +79,18 @@ from housingdata import *
  
  - Updating bias b with learning rate α,
  
- >  b := b - (α / 2 * m) (**∑** (h(X) - Y) * X(i))
+ >  b := b * (1 - lambda/m) - (α / 2 * m) (**∑** (h(X) - Y) * X(i))
  
  - Updating weight W with learning rate α,
  
- >  W[i] := w[i] - (α / 2 * m) (**∑** (h(X) - Y) * X(i))
+ >  W[i] := w[i] * (1 - lambda/m) - (α / 2 * m) (**∑** (h(X) - Y) * X(i))
  
  ```
  def gradient_descent(X, Y, W, b, itertions, learning_rate, method):
     (n,m) = X.shape
     for iteration in range(itertions):
         if method == "Linear":
-            dJ = np.dot(W,X) + b - Y
+            dJ = np.dot(W,X) + b - Y 
             db = np.sum(dJ, axis=0)/(2*m)
             dW = np.sum(np.dot(dJ,X.T), axis=0)/(2*m)
         elif method == "Logistic":
@@ -100,8 +100,8 @@ from housingdata import *
             dW = np.sum(np.dot(dJ,X.T), axis=0)/m
         else:
             print "Error in gradient descent: No method Found"
-        W = W - learning_rate * dW
-        b = b - learning_rate * db
+        W = W * (1 - lambda/m) - learning_rate * dW
+        b = b * (1 - lambda/m) - learning_rate * db
     print dJ.shape
     assert(dJ.shape == (W.shape[0],X.shape[1]))
     assert(db.shape == b.shape)
