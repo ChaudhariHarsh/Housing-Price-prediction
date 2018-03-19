@@ -153,7 +153,7 @@ from housingdata import *
 
 ## Visualizing Trained model : 
 
-This is visualization part.
+- This is visualization part.
 
 ```
 x = Xv[1,:].T
@@ -170,4 +170,8 @@ A = visualization(x, y, hf)
 ```
 ![Alt text](https://github.com/ChaudhariHarsh/Housing-Price-prediction/blob/master/LinearRe.png)
 
-As we can see this is very good fit to data
+- As we can see this is very good fit to data.
+
+- This is visualizarion figure with normalization implementation.
+
+![Alt text](https://github.com/ChaudhariHarsh/Housing-Price-prediction/blob/master/LinearReg.png)
