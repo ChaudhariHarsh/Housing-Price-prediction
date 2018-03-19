@@ -168,5 +168,6 @@ hf = hf.flatten()
 #print X,X.shape,hyponthsis_function.shape
 A = visualization(x, y, hf)
 ```
+![Alt text](https://github.com/ChaudhariHarsh/Housing-Price-prediction/blob/master/LinearRe.png)
 
 As we can see this is very good fit to data
