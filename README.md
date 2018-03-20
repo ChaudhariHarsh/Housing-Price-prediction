@@ -175,3 +175,6 @@ A = visualization(x, y, hf)
 - This is visualizarion figure with normalization implementation.
 
 ![Alt text](https://github.com/ChaudhariHarsh/Housing-Price-prediction/blob/master/LinearReg.png)
+
+- As you can see here that last figure seems to overfit dataset but it does not. We can only visualize two feature but here we are using three and so that this 2D figure cant have that informations.
+
