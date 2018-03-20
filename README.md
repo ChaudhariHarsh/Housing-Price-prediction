@@ -178,3 +178,4 @@ A = visualization(x, y, hf)
 
 - As you can see here that last figure seems to overfit dataset but it does not. We can only visualize two feature but here we are using three and so that this 2D figure cant have that informations.
 
+- So here house price depends on size and its no of badrooms, and we are using third feature as root(size) for noon linear fiting curve, but as we can understand that figure can only show price and size in 2D. So two features are not included in figure.
