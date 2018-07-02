@@ -2,16 +2,16 @@ import numpy as np
 
 def housingPrice():
     Z = []
-    file = open("data.txt", "r") 
+    file = open("data.txt", "r")     # Read through file name data.txt
     for line in file:
-        line = line.split(',')
+        line = line.split(',')       # split line where (,) found
         Z.append(line)
-    
+        
     Z = np.matrix(Z, dtype=float)
     Zv = Z
     Zv = np.sort(Zv, axis=0)
     (j, k) = Z.shape
-    X = np.zeros((j,k+2),dtype=float)
+    X = np.zeros((j,k+2),dtype=float) 
     Y = np.zeros((j,1),dtype=float)
     Xv = np.zeros((j,k+2),dtype=float)
     Yv = np.zeros((j,1),dtype=float)
@@ -31,9 +31,9 @@ def housingPrice():
     X = np.matrix(X)
     Xv = np.matrix(Xv)
 
-    X = X.T ## Make this X with shape of (5,47)
-    Y = Y.T ## Make this Y with shape of (1,47)
+    X = X.T                ## Make this X with shape of (5,47)
+    Y = Y.T                ## Make this Y with shape of (1,47)
     Xv = np.matrix(Xv)
-    Xv = Xv.T ## Make this X with shape of (5,47)
-    Yv = Yv.T ## Make this Y with shape of (1,47)
+    Xv = Xv.T              ## Make this X with shape of (5,47)
+    Yv = Yv.T              ## Make this Y with shape of (1,47)
     return X, Y, Xv, Yv
